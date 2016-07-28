@@ -1,2 +1,3 @@
 # WuXiaGameAssist_PreVersion0_1
-just temproray repository for developing.
+It is a temproray repository for developing.
+The repository will move to a new one soon.
