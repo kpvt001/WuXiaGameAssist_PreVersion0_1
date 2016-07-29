@@ -19,9 +19,7 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    setTimeNameText(const QString& text);
-    setTimeLastText(const QString& text);
-    updateCurrentTime();
+    void updateCurrentTime();
 };
 
 #endif // MAINWINDOW_H

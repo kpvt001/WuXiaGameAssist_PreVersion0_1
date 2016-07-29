@@ -18,6 +18,12 @@ GTime::~GTime()
     delete pp_holder;
 }
 
+GTime::GTime(const GTime &obj)
+    : h_(obj.h_), m_(obj.m_), s_(obj.s_), ms_(obj.ms_)
+{
+    pp_holder = new PClass;
+}
+
 QTime GTime::ToQTime() const
 {
     return GTimeHelper::ToQTime(*this);

@@ -13,6 +13,8 @@ class GString
     friend class GStringHelper;
 public:
     GString();
+    GString(const GString& obj);
+
     virtual ~GString();
 
     QString ToQString() const;
@@ -20,7 +22,7 @@ public:
 private:
     PClass *pp_holder;
 
-    DISALLOW_COPY_AND_ASSIGN(GString);
+    //DISALLOW_COPY_AND_ASSIGN(GString);
 };
 
 class P_Class(GString)

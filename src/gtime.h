@@ -19,6 +19,7 @@ class GTime
     friend class GTimeHelper;
 public:
     GTime(int h = 0, int m = 0, int s = 0, int ms = 0);
+    GTime(const GTime& obj);
     virtual ~GTime();
 
     QTime ToQTime() const;
@@ -37,7 +38,7 @@ private:
     int s_;
     int ms_;
 
-    DISALLOW_COPY_AND_ASSIGN(GTime);
+    //DISALLOW_COPY_AND_ASSIGN(GTime);
 };
 
 class P_Class(GTime)
