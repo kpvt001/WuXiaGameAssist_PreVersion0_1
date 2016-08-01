@@ -17,10 +17,14 @@ class GTime
 {
     typedef P_Class(GTime) PClass;
     friend class GTimeHelper;
+
 public:
     GTime(int h = 0, int m = 0, int s = 0, int ms = 0);
     GTime(const GTime& obj);
     virtual ~GTime();
+
+    static GTime CurrentTime();
+
 
     QTime ToQTime() const;
 
@@ -31,6 +35,7 @@ public:
     int ms() const { return ms_; }
 
 private:
+
     PClass *pp_holder;
 
     int h_;

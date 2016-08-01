@@ -1,6 +1,9 @@
 #include "gametimeserver.h"
 
 #include "gametimeserverres.h"
+#include "pretable.h"
+#include "gtimehelper.h"
+#include "gtime.h"
 
 
 namespace wuxia {

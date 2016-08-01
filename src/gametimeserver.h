@@ -4,12 +4,11 @@
 #include "projcommon.h"
 
 class GString;
-
+class GTime;
 
 namespace wuxia {
 
 class GameTime;
-class PTime;
 
 class P_Class(GameTimeServer);
 
@@ -26,7 +25,7 @@ public:
     const QList<QString>* TimeNames() const;
     GString TimeNameOf(int time_index);
     int TimeIndexsCount() const;
-    GameTime GameTimeInPTime(const PTime& ptime);
+    GameTime GameTimeInPTime(const GTime& ptime);
 
     virtual ~GameTimeServer();
 

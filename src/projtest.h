@@ -17,7 +17,8 @@ private:
     bool TestGTime();
     bool TestGString();
 
-    void Message(bool ok, const QString& fun, const QString& msg = QString());
+    void Message(bool ok, const QString& fun, const QString& msg = QString()) const;
+    void Message(const QString &msg) const;
 };
 
 #endif // PROJTEST

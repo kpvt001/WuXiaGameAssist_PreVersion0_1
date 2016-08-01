@@ -24,3 +24,13 @@ QTime GTimeHelper::ToQTime(const GTime &src)
     return ret;
 }
 
+GTime GTimeHelper::CurrentTime()
+{
+    return CurrentTimeViaQTime();
+}
+
+GTime GTimeHelper::CurrentTimeViaQTime()
+{
+    QTime t = QTime::currentTime();
+    return Make(t);
+}

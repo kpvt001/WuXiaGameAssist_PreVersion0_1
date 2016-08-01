@@ -29,4 +29,8 @@ QTime GTime::ToQTime() const
     return GTimeHelper::ToQTime(*this);
 }
 
+GTime GTime::CurrentTime()
+{
+    return GTimeHelper::CurrentTime();
+}
 
