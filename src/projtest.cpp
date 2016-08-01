@@ -6,6 +6,12 @@ ProjectTest::ProjectTest()
 
 }
 
+ProjectTest ProjectTest::Instance()
+{
+    static ProjectTest instance;
+    return instance;
+}
+
 bool ProjectTest::RunTest()
 {
     bool ok = false;

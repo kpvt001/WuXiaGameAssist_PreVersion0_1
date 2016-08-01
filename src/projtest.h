@@ -11,6 +11,8 @@ class ProjectTest
 public:
     ProjectTest();
 
+    static ProjectTest Instance();
+
     bool RunTest();
 
 private:
