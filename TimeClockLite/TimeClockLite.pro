@@ -17,7 +17,6 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     TimeClockTagContainer.cpp \
     Logger.cpp \
-    LogRecord.cpp \
     Timer.cpp \
     TimerUiObjectHolder.cpp \
     Task.cpp \
@@ -27,7 +26,6 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     TimeClockTagContainer.h \
     Logger.h \
-    LogRecord.h \
     Timer.h \
     TimerUiObjectHolder.h \
     Task.h \
