@@ -1,18 +1,10 @@
 #include "Logger.h"
 
-#include <iostream>
 #include <QDebug>
 
 Logger::Logger(QObject *parent) : QObject(parent)
 {
 
-}
-
-Logger& Logger::StaticLogger()
-{
-    static Logger instance;
-    instance.SetFilePath("log.log");
-    return instance;
 }
 
 QString Logger::LevelString(int level)
@@ -40,12 +32,6 @@ QString Logger::LevelString(int level)
 
     return ret;
 }
-
-void Logger::SetFilePath(const QString &path)
-{
-    mPath = path;
-}
-
 
 Logger& Logger::operator <<(const QString &string)
 {
