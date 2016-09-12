@@ -19,15 +19,20 @@ SOURCES += main.cpp\
     Timer.cpp \
     TimerUiObjectHolder.cpp \
     BeepRingTask.cpp \
-    StringValidity.cpp
+    StringValidity.cpp \
+    TestPanel.cpp \
+    Settings.cpp
 
 HEADERS  += mainwindow.h \
     Logger.h \
     Timer.h \
     TimerUiObjectHolder.h \
     BeepRingTask.h \
-    StringValidity.h
+    StringValidity.h \
+    TestPanel.h \
+    Settings.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    testpanel.ui
 
 RESOURCES +=

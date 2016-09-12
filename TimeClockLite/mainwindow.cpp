@@ -3,13 +3,15 @@
 
 #include <QMessageBox>
 #include <QTime>
+#include <QStringList>
+#include <QDebug>
 
 #include "Logger.h"
 #include "TimerUiObjectHolder.h"
 #include "BeepRingTask.h"
 #include "StringValidity.h"
 #include "Timer.h"
-
+#include "TestPanel.h"
 
 class MainWindowPrivateDatas// : public QObject
 {
@@ -38,6 +40,12 @@ MainWindow::MainWindow(QWidget *parent)
     InitWuShiTimer();
     InitZiShiTimer();
     ConnectObjects();
+    TestPanel *panel = new TestPanel(this);
+    panel->show();
+
+    QStringList args = QApplication::arguments();
+
+    qDebug() << args;
 }
 
 MainWindow::~MainWindow()
@@ -93,7 +101,7 @@ void MainWindow::ConnectTimer(TimerUiObjectHolder *holder)
         Timer *timer;
         Q_FOREACH(timer, mWuShiTimerHolder->mTimers)
         {
-            connect(timer, SIGNAL(toTrigger(int)), this, SLOT(OnWuShiTimerTriggered(int)));
+            connect(timer, SIGNAL(Triggered(int)), this, SLOT(OnWuShiTimerTriggered(int)));
         }
     }
     else if (holder == mZiShiTimerHolder)
@@ -101,7 +109,7 @@ void MainWindow::ConnectTimer(TimerUiObjectHolder *holder)
         Timer *timer;
         Q_FOREACH(timer, mZiShiTimerHolder->mTimers)
         {
-            connect(timer, SIGNAL(toTrigger(int)), this, SLOT(OnZiShiTimerTriggered(int)));
+            connect(timer, SIGNAL(Triggered(int)), this, SLOT(OnZiShiTimerTriggered(int)));
         }
     }
 
