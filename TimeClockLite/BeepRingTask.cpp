@@ -7,7 +7,7 @@ BeepRingTask::BeepRingTask(int loopSec)
     : mLoopSec(loopSec > 0 ? loopSec : 1), QThread(nullptr)
     , mBeepIntervalMSec(1000)
 {
-    connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
+    //connect(this, SIGNAL(finished()), this, SLOT(deleteLater()));
 }
 
 BeepRingTask::~BeepRingTask()

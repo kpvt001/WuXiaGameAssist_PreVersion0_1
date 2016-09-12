@@ -50,10 +50,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::ConfigUI()
 {
+//    QRegExp regexp("[0-9]+$");
+//    QValidator *validator = new QRegExpValidator(regexp, ui->lastAlertSecLineEdit);
+//    ui->lastAlertSecLineEdit->setValidator(validator);
+
     ui->lastAlertSecLineEdit->setText(QString("%1").arg(mPrivateDatas->ringLastSec));
-    QRegExp regexp("[0-9]+$");
-    QValidator *validator = new QRegExpValidator(regexp, ui->lastAlertSecLineEdit);
-    ui->lastAlertSecLineEdit->setValidator(validator);
+    ui->startPushButton->setVisible(false);
 }
 
 void MainWindow::InitWuShiTimer()
@@ -73,8 +75,6 @@ void MainWindow::InitZiShiTimer()
     for (int i = 0; i < 24 / 4; i++)
     {
         mZiShiTimerHolder->AddTimer(QTime((2 + i * 4) % 24, 5));
-
-        mZiShiTimerHolder->AddTimer(QTime(4, 45, 15));
     }
 }
 
@@ -167,9 +167,16 @@ void MainWindow::OnZiShiTimerTriggered(int tag)
 
 void MainWindow::Attention(const QString &message)
 {
+	int lastSec = ui->lastAlertSecLineEdit->text().toInt();
+	Log << lastSec;
+
+	BeepRingTask ringTask(lastSec);
+	ringTask.start();
+
     QMessageBox dlg;
     dlg.setText(message);
     dlg.exec();
+	ringTask.terminate();
 }
 
 void MainWindow::OnStartPushButtonClick(bool checked)
