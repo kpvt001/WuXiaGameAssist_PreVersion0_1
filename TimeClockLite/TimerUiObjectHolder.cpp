@@ -1,6 +1,7 @@
 #include "TimerUiObjectHolder.h"
 
 #include "Logger.h"
+#include "Timer.h"
 
 TimerUiObjectHolder::TimerUiObjectHolder(QObject *parent) : QObject(parent)
 {

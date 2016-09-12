@@ -28,8 +28,6 @@ private:
     void ConnectTimer(TimerUiObjectHolder *holder);
     void ConnectUIObjects();
 
-    void EnableTimer(TimerUiObjectHolder *holder, bool enable = true);
-    void DisableTimer(TimerUiObjectHolder *holder);
     void InitWuShiTimer();
     void InitZiShiTimer();
 
@@ -47,7 +45,6 @@ protected slots:
 
 public slots:
     void OnTimerTriggered(int tag);
-    void OnTimeCheckBoxChecked(bool checked);
     void OnWuShiTimerTriggered(int tag);
     void OnZiShiTimerTriggered(int tag);
 };

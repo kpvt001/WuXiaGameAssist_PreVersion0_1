@@ -2,11 +2,13 @@
 #include "ui_mainwindow.h"
 
 #include <QMessageBox>
+#include <QTime>
 
 #include "Logger.h"
 #include "TimerUiObjectHolder.h"
 #include "BeepRingTask.h"
 #include "StringValidity.h"
+#include "Timer.h"
 
 
 class MainWindowPrivateDatas// : public QObject
@@ -108,7 +110,7 @@ void MainWindow::ConnectTimer(TimerUiObjectHolder *holder)
 
 void MainWindow::OnTimerTriggered(int tag)
 {
-    qDebug() << "trigger timer " << tag;
+	Log << QString("trigger timer (tag %1)").arg(tag);
 }
 
 void MainWindow::OnWuShiTimerTriggered(int tag)
