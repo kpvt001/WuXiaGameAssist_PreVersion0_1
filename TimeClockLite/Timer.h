@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QTime>
-#include <QMutex>
 
 class Timer : public QObject
 {
