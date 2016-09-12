@@ -109,7 +109,7 @@ void Timer::Trigger(void *param)
         return;
 
     mTriggered = true;
-    emit toTrigger(mTag);
+    emit Triggered(mTag);
 }
 
 float Timer::CalcMaxIntervalWithAccuracy(float sec)
@@ -118,7 +118,7 @@ float Timer::CalcMaxIntervalWithAccuracy(float sec)
     if(sec > 10.0f)
         return 1.0f;
     else if (sec > 1.0f)
-        return qMin(1.0f, sec / 6);
+        return qMin(kDefualtLargeMax, sec / 6);
     else
         return sec / 10;
 }

@@ -2,12 +2,9 @@
 #define LOGGER_H
 
 #include <QObject>
-#include <QString>
-#include <QTime>
-#include <QDate>
-#include <QTextStream>
 
-
+class QString;
+class QTime;
 
 class Logger : public QObject
 {
@@ -25,11 +22,7 @@ public:
 
 public:
     explicit Logger(QObject *parent = 0);
-    static Logger& StaticLogger();
     static QString LevelString(int level);
-
-    void SetFilePath(const QString &path);
-    void Flush();
 
     Logger& operator <<(const QString &string);
     Logger& operator <<(const QTime &time);
@@ -41,14 +34,6 @@ signals:
 public slots:
 
 private:
-    bool Open();
-    void Close();
-
-    QString mPath;
-
-
-public:
-
 };
 
 static Logger& LogInstance()

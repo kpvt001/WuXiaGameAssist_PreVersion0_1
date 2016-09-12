@@ -1,5 +1,7 @@
 #include "TimerUiObjectHolder.h"
 
+#include "Logger.h"
+
 TimerUiObjectHolder::TimerUiObjectHolder(QObject *parent) : QObject(parent)
 {
 
@@ -15,6 +17,7 @@ void TimerUiObjectHolder::AddTimer(const QTime &time)
 
 void TimerUiObjectHolder::EnableTimers(bool enable)
 {
+    Log << "Enable Timers";
 	Timer *timer;
 	Q_FOREACH(timer, mTimers)
 	{

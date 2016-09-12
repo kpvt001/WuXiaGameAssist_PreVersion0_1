@@ -2,11 +2,12 @@
 #define TIMERUIOBJECTHOLDER_H
 
 #include <QObject>
-#include <QCheckBox>
 #include <QVector>
-#include <QTime>
 
-#include "Timer.h"
+class QCheckBox;
+class QTime;
+
+class Timer;
 
 class TimerUiObjectHolder : public QObject
 {

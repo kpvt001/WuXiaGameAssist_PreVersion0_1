@@ -30,12 +30,6 @@ private:
     void ConnectTimer(TimerUiObjectHolder *holder);
     void ConnectUIObjects();
 
-    void EnableWuShiTimer();
-    void DisableWuShiTimer();
-    void EnableZiShiTimer();
-    void DisableZiShiTimer();
-
-
     void EnableTimer(TimerUiObjectHolder *holder, bool enable = true);
     void DisableTimer(TimerUiObjectHolder *holder);
     void InitWuShiTimer();

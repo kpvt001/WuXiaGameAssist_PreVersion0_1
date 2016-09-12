@@ -5,8 +5,6 @@
 #include <QTime>
 #include <QMutex>
 
-class Timer;
-
 class Timer : public QObject
 {
     Q_OBJECT
@@ -49,7 +47,7 @@ private:
 
 
 signals:
-    void toTrigger(int tag);
+    void Triggered(int tag);
 
 
 public slots:

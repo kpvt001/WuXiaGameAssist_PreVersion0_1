@@ -15,20 +15,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    TimeClockTagContainer.cpp \
     Logger.cpp \
     Timer.cpp \
     TimerUiObjectHolder.cpp \
-    Task.cpp \
     BeepRingTask.cpp \
     StringValidity.cpp
 
 HEADERS  += mainwindow.h \
-    TimeClockTagContainer.h \
     Logger.h \
     Timer.h \
     TimerUiObjectHolder.h \
-    Task.h \
     BeepRingTask.h \
     StringValidity.h
 

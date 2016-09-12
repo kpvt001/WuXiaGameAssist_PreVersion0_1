@@ -2,10 +2,8 @@
 #include "ui_mainwindow.h"
 
 #include <QMessageBox>
-#include <QMediaPlayer>
-#include <QRegExpValidator>
+//#include <QRegExpValidator>
 
-#include "Timer.h"
 #include "Logger.h"
 #include "TimerUiObjectHolder.h"
 #include "BeepRingTask.h"
@@ -17,11 +15,10 @@ class MainWindowPrivateDatas// : public QObject
     friend class MainWindow;
 
 private:
-    MainWindowPrivateDatas(/*QObject *parent*/)
+    MainWindowPrivateDatas()
         : ringLastSec(100)
         , ringMaxLastSec(1 * 60 * 60)
-        , ringFilePath("ring.wav")
-        //, QObject(parent)
+        , ringFilePath()
     {}
     int ringLastSec;
     int ringMaxLastSec;
@@ -55,6 +52,8 @@ void MainWindow::ConfigUI()
 //    ui->lastAlertSecLineEdit->setValidator(validator);
 
     ui->lastAlertSecLineEdit->setText(QString("%1").arg(mPrivateDatas->ringLastSec));
+
+    // disable widgets
     ui->startPushButton->setVisible(false);
 }
 
@@ -80,8 +79,6 @@ void MainWindow::InitZiShiTimer()
 
 void MainWindow::ConnectObjects()
 {
-    connect(ui->startPushButton, SIGNAL(clicked(bool)), this, SLOT(OnStartPushButtonClick(bool)));
-
     ConnectTimer(mWuShiTimerHolder);
     ConnectTimer(mZiShiTimerHolder);
     ConnectUIObjects();
@@ -90,6 +87,7 @@ void MainWindow::ConnectObjects()
 void MainWindow::ConnectUIObjects()
 {
     connect(ui->lastAlertSecLineEdit, SIGNAL(textEdited(QString)), this, SLOT(OnLastAlertLineEditEdited(QString)));
+    connect(ui->startPushButton, SIGNAL(clicked(bool)), this, SLOT(OnStartPushButtonClick(bool)));
 }
 
 void MainWindow::ConnectTimer(TimerUiObjectHolder *holder)
@@ -117,11 +115,6 @@ void MainWindow::ConnectTimer(TimerUiObjectHolder *holder)
 void MainWindow::OnTimerTriggered(int tag)
 {
     qDebug() << "trigger timer " << tag;
-}
-
-void MainWindow::EnableWuShiTimer()
-{
-
 }
 
 void MainWindow::EnableTimer(TimerUiObjectHolder *holder, bool enable)
