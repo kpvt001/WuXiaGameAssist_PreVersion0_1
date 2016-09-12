@@ -6,7 +6,6 @@
 #include <QTime>
 #include <QDate>
 #include <QTextStream>
-#include "LogRecord.h"
 
 
 
@@ -44,7 +43,6 @@ public slots:
 private:
     bool Open();
     void Close();
-    bool WriteLogRecord(const LogRecord &record);
 
     QString mPath;
 
@@ -53,13 +51,13 @@ public:
 
 };
 
-static Logger& tLog()
+static Logger& LogInstance()
 {
     static Logger logger;
 	logger << '\n';
     return logger;
 }
 
-#define Log (tLog())
+#define Log (LogInstance())
 
 #endif // LOGGER_H
