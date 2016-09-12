@@ -52,6 +52,5 @@ public slots:
     void OnTimeCheckBoxChecked(bool checked);
     void OnWuShiTimerTriggered(int tag);
     void OnZiShiTimerTriggered(int tag);
-    void OnStartPushButtonClick(bool checked);
 };
 #endif // MAINWINDOW_H

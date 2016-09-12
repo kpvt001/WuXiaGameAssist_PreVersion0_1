@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 
 #include <QMessageBox>
-//#include <QRegExpValidator>
 
 #include "Logger.h"
 #include "TimerUiObjectHolder.h"
@@ -47,10 +46,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::ConfigUI()
 {
-//    QRegExp regexp("[0-9]+$");
-//    QValidator *validator = new QRegExpValidator(regexp, ui->lastAlertSecLineEdit);
-//    ui->lastAlertSecLineEdit->setValidator(validator);
-
     ui->lastAlertSecLineEdit->setText(QString("%1").arg(mPrivateDatas->ringLastSec));
 
     // disable widgets
@@ -87,7 +82,6 @@ void MainWindow::ConnectObjects()
 void MainWindow::ConnectUIObjects()
 {
     connect(ui->lastAlertSecLineEdit, SIGNAL(textEdited(QString)), this, SLOT(OnLastAlertLineEditEdited(QString)));
-    connect(ui->startPushButton, SIGNAL(clicked(bool)), this, SLOT(OnStartPushButtonClick(bool)));
 }
 
 void MainWindow::ConnectTimer(TimerUiObjectHolder *holder)
@@ -117,35 +111,6 @@ void MainWindow::OnTimerTriggered(int tag)
     qDebug() << "trigger timer " << tag;
 }
 
-void MainWindow::EnableTimer(TimerUiObjectHolder *holder, bool enable)
-{
-    Timer *timer;
-    Q_FOREACH(timer, holder->mTimers)
-    {
-        if(enable)
-            timer->Enable();
-        else
-            timer->Disable();
-    }
-}
-
-void MainWindow::DisableTimer(TimerUiObjectHolder *holder)
-{
-    EnableTimer(holder, false);
-}
-
-void MainWindow::OnTimeCheckBoxChecked(bool checked)
-{
-    if (sender() == ui->wuShiCheckBox)
-    {
-        EnableTimer(mWuShiTimerHolder, checked);
-    }
-    else if (sender() == ui->ziShiCheckBox)
-    {
-        EnableTimer(mZiShiTimerHolder, checked);
-    }
-}
-
 void MainWindow::OnWuShiTimerTriggered(int tag)
 {
     Q_UNUSED(tag);
@@ -170,16 +135,6 @@ void MainWindow::Attention(const QString &message)
     dlg.setText(message);
     dlg.exec();
 	ringTask.terminate();
-}
-
-void MainWindow::OnStartPushButtonClick(bool checked)
-{
-	Q_UNUSED(checked);
-    int lastSec = ui->lastAlertSecLineEdit->text().toInt();
-    Log << lastSec;
-
-    BeepRingTask *ringTask = new BeepRingTask(lastSec);
-    ringTask->start();
 }
 
 void MainWindow::OnLastAlertLineEditEdited(const QString &text)
