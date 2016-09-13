@@ -170,6 +170,7 @@ void MainWindow::Attention(const QString &message)
 
     QMessageBox dlg;
     dlg.setText(message);
+    dlg.setWindowFlags(Qt::WindowStaysOnTopHint);
     dlg.exec();
 	ringTask.terminate();
 }
