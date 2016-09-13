@@ -2,7 +2,9 @@
 #include "TestPanel.h"
 
 Settings::Settings(QObject *parent)
-    : mIsTestMode(false), QObject(parent)
+    : mIsTestMode(false)
+    , mUseTestCurrentTime(false)
+    , QObject(parent)
 {
 
 }

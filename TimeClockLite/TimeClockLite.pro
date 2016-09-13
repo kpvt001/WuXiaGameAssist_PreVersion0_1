@@ -21,7 +21,10 @@ SOURCES += main.cpp\
     BeepRingTask.cpp \
     StringValidity.cpp \
     TestPanel.cpp \
-    Settings.cpp
+    Settings.cpp \
+    ArgsOpt.cpp \
+    GlobalVariables.cpp \
+    Global.cpp
 
 HEADERS  += mainwindow.h \
     Logger.h \
@@ -30,7 +33,10 @@ HEADERS  += mainwindow.h \
     BeepRingTask.h \
     StringValidity.h \
     TestPanel.h \
-    Settings.h
+    Settings.h \
+    ArgsOpt.h \
+    GlobalVariables.h \
+    Global.h
 
 FORMS    += mainwindow.ui \
     testpanel.ui

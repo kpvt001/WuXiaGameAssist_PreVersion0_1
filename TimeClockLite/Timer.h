@@ -33,6 +33,8 @@ private:
     float SetAccuracySec(float sec);
     float CalcMaxIntervalWithAccuracy(float sec);
     float MinAccuracySec() const;
+    static QTime CurrentTime();
+    static QTime TestCurrentTime();
 
 	QTime mTime;
     volatile bool mTriggered; // today timer is triggered

@@ -172,7 +172,7 @@
      <string>秒</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="openTestPanelPushButton">
     <property name="geometry">
      <rect>
       <x>0</x>

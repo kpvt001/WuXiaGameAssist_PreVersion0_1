@@ -2,6 +2,8 @@
 #include <QTimerEvent>
 
 #include "Logger.h"
+#include "Settings.h"
+#include "GlobalVariables.h"
 
 static const float kDefualtAccuracySec = 10.0f;
 static const float kDefualtIntervalSec = kDefualtAccuracySec / 6;
@@ -88,7 +90,7 @@ void Timer::timerEvent(QTimerEvent *event)
 
 void Timer::Process(void *param)
 {
-    QTime curTime = QTime::currentTime();
+    QTime curTime = CurrentTime();
     if(curTime < mTime)
     {
         Reset();
@@ -126,4 +128,17 @@ float Timer::CalcMaxIntervalWithAccuracy(float sec)
 void Timer::Reset()
 {
     mTriggered = false;
+}
+
+QTime Timer::CurrentTime()
+{
+    if (Settings::Global().IsUseTestCurrentTime())
+        return TestCurrentTime();
+    else
+        return QTime::currentTime();
+}
+
+QTime Timer::TestCurrentTime()
+{
+    return GlobalVariables::Global().TestCurrentTime();
 }

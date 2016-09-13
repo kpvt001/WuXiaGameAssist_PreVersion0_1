@@ -12,6 +12,7 @@
 #include "StringValidity.h"
 #include "Timer.h"
 #include "TestPanel.h"
+#include "Settings.h"
 
 class MainWindowPrivateDatas// : public QObject
 {
@@ -40,12 +41,9 @@ MainWindow::MainWindow(QWidget *parent)
     InitWuShiTimer();
     InitZiShiTimer();
     ConnectObjects();
-    TestPanel *panel = new TestPanel(this);
-    panel->show();
 
-    QStringList args = QApplication::arguments();
-
-    qDebug() << args;
+    if (TestMode())
+        InitTestMode();
 }
 
 MainWindow::~MainWindow()
@@ -54,12 +52,39 @@ MainWindow::~MainWindow()
     delete mPrivateDatas;
 }
 
+void MainWindow::InitTestMode()
+{
+    Log << "MainWindow::InitTestMode()";
+    mTestPanel = new TestPanel(this);
+
+    connect(ui->openTestPanelPushButton, SIGNAL(clicked(bool)), this, SLOT(OnOpenTestPanelClicked(bool)));
+}
+
+TestPanel* MainWindow::GetTestPanel() const
+{
+    return mTestPanel;
+}
+
+bool MainWindow::TestMode() const
+{
+    return Settings::Global().IsTestMode();
+}
+
 void MainWindow::ConfigUI()
 {
     ui->lastAlertSecLineEdit->setText(QString("%1").arg(mPrivateDatas->ringLastSec));
 
     // disable widgets
     ui->startPushButton->setVisible(false);
+    ui->openTestPanelPushButton->setVisible(false);
+
+    if (Settings::Global().IsTestMode())
+        ConfigTestModeUI();
+}
+
+void MainWindow::ConfigTestModeUI()
+{
+    ui->openTestPanelPushButton->setVisible(true);
 }
 
 void MainWindow::InitWuShiTimer()
@@ -92,6 +117,8 @@ void MainWindow::ConnectObjects()
 void MainWindow::ConnectUIObjects()
 {
     connect(ui->lastAlertSecLineEdit, SIGNAL(textEdited(QString)), this, SLOT(OnLastAlertLineEditEdited(QString)));
+
+    connect(ui->openTestPanelPushButton, SIGNAL(clicked(bool)), this, SLOT(OnOpenTestPanelClicked(bool)));
 }
 
 void MainWindow::ConnectTimer(TimerUiObjectHolder *holder)
@@ -158,4 +185,10 @@ void MainWindow::OnLastAlertLineEditEdited(const QString &text)
     {
         mPrivateDatas->ringLastSec = ui->lastAlertSecLineEdit->text().toInt();
     }
+}
+
+void MainWindow::OnOpenTestPanelClicked(bool checked)
+{
+    Q_UNUSED(checked);
+    mTestPanel->show();
 }

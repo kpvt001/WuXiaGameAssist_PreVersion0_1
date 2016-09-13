@@ -14,9 +14,12 @@ public:
 
     inline bool IsTestMode() const {return mIsTestMode;}
     inline void SetTestMode(bool mode = true) {mIsTestMode = mode;}
+    inline bool IsUseTestCurrentTime() const { return mUseTestCurrentTime;}
+    inline void SetUseTestCurrentTime(bool use = true) {mUseTestCurrentTime = use;}
 
 private:
     bool mIsTestMode;
+    bool mUseTestCurrentTime;
 };
 
 #endif // SETTINGS_H
