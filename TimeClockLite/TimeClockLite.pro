@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     ArgsOpt.cpp \
     GlobalVariables.cpp \
     Global.cpp \
-    TimerMaker.cpp
+    TimerMaker.cpp \
+    WuXiaTimeConfig.cpp
 
 HEADERS  += mainwindow.h \
     Logger.h \
@@ -38,7 +39,8 @@ HEADERS  += mainwindow.h \
     ArgsOpt.h \
     GlobalVariables.h \
     Global.h \
-    TimerMaker.h
+    TimerMaker.h \
+    WuXiaTimeConfig.h
 
 FORMS    += mainwindow.ui \
     testpanel.ui
