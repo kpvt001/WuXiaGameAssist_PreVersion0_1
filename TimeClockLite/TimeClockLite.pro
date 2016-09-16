@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     Settings.cpp \
     ArgsOpt.cpp \
     GlobalVariables.cpp \
-    Global.cpp
+    Global.cpp \
+    TimerMaker.cpp
 
 HEADERS  += mainwindow.h \
     Logger.h \
@@ -36,7 +37,8 @@ HEADERS  += mainwindow.h \
     Settings.h \
     ArgsOpt.h \
     GlobalVariables.h \
-    Global.h
+    Global.h \
+    TimerMaker.h
 
 FORMS    += mainwindow.ui \
     testpanel.ui
