@@ -46,6 +46,7 @@ public:
     TimerUiObjectHolder(QObject *parent = 0);
 
     void AddTimer(const QTime &time);
+    void AddTimer(const QVector<QTime*>& times);
 
     void EnableTimers(bool enable = true);
 

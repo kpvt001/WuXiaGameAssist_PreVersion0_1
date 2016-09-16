@@ -66,3 +66,12 @@ void TimerUiObjectHolder::OnCheckBoxChecked(bool checked)
 {
 	EnableTimers(checked);
 }
+
+void TimerUiObjectHolder::AddTimer(const QVector<QTime *> &times)
+{
+    QTime *time;
+    Q_FOREACH(time, times)
+    {
+        AddTimer(*time);
+    }
+}
