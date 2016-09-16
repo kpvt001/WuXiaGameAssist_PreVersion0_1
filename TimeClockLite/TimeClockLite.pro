@@ -40,7 +40,8 @@ HEADERS  += mainwindow.h \
     GlobalVariables.h \
     Global.h \
     TimerMaker.h \
-    WuXiaTimeConfig.h
+    WuXiaTimeConfig.h \
+    WuXiaTimeConfigDataSheet.h
 
 FORMS    += mainwindow.ui \
     testpanel.ui
