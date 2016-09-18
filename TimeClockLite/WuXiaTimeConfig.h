@@ -29,11 +29,29 @@
 #ifndef WUXIATIMECONFIG_H
 #define WUXIATIMECONFIG_H
 
+#include <vector>
+#include <string>
+
+struct WuXiaTimeData
+{
+    struct _Time
+    {
+        int hour;
+        int min;
+    };
+
+    int number;
+    _Time time;
+};
 
 class WuXiaTimeConfig
 {
 public:
+    static std::wstring NameOfTime(const WuXiaTimeData& data);
+    static std::wstring NameOfNumber(int number);
+private:
     WuXiaTimeConfig();
+
 };
 
 #endif // WUXIATIMECONFIG_H
