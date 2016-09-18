@@ -1,0 +1,25 @@
+﻿  WuXiaTimeConfigDatasheet_test.cpp
+c:\users\ludong\desktop\wuxiagameassist_preversion0_1\timeclocklite\unittest\gtest/gtest.h(1392): error C2678: 二进制“==”: 没有找到接受“const int”类型的左操作数的运算符(或没有可接受的转换)
+  c:\users\ludong\desktop\wuxiagameassist_preversion0_1\timeclocklite\unittest\gtest/gtest.h(1392): note: 可能是“内置 C++ operator==(Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>::<lambda_typedef_cdecl>, Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>::<lambda_typedef_cdecl>)”
+  c:\users\ludong\desktop\wuxiagameassist_preversion0_1\timeclocklite\unittest\gtest/gtest.h(1392): note: 或    “内置 C++ operator==(Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>::<lambda_typedef_stdcall>, Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>::<lambda_typedef_stdcall>)”
+  c:\users\ludong\desktop\wuxiagameassist_preversion0_1\timeclocklite\unittest\gtest/gtest.h(1392): note: 或    “内置 C++ operator==(Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>::<lambda_typedef_fastcall>, Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>::<lambda_typedef_fastcall>)”
+  c:\users\ludong\desktop\wuxiagameassist_preversion0_1\timeclocklite\unittest\gtest/gtest.h(1392): note: 或    “内置 C++ operator==(Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>::<lambda_typedef_vectorcall>, Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>::<lambda_typedef_vectorcall>)”
+  c:\users\ludong\desktop\wuxiagameassist_preversion0_1\timeclocklite\unittest\gtest/gtest.h(1392): note: 尝试匹配参数列表“(const int, const Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>)”时
+  c:\users\ludong\desktop\wuxiagameassist_preversion0_1\timeclocklite\unittest\gtest/gtest.h(1421): note: 参见对正在编译的函数 模板 实例化“testing::AssertionResult testing::internal::CmpHelperEQ<T1,T2>(const char *,const char *,const T1 &,const T2 &)”的引用
+          with
+          [
+              T1=int,
+              T2=Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>
+          ]
+  WuXiaTimeConfigDatasheet_test.cpp(11): note: 参见对正在编译的函数 模板 实例化“testing::AssertionResult testing::internal::EqHelper<false>::Compare<int,Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>>(const char *,const char *,const T1 &,const T2 &)”的引用
+          with
+          [
+              T1=int,
+              T2=Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>
+          ]
+  WuXiaTimeConfigDatasheet_test.cpp(11): note: 参见对正在编译的函数 模板 实例化“testing::AssertionResult testing::internal::EqHelper<false>::Compare<int,Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>>(const char *,const char *,const T1 &,const T2 &)”的引用
+          with
+          [
+              T1=int,
+              T2=Datasheet_Time_Test::TestBody::<lambda_c252168bdeb703a534a03c9f224c8a28>
+          ]
