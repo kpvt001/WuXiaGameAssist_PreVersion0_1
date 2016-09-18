@@ -29,11 +29,17 @@
 #ifndef TIMERMAKER_H
 #define TIMERMAKER_H
 
+#include "Timer.h"
 
 class TimerMaker
 {
 public:
+    static Timer MakeZiShiTimer();
+private:
     TimerMaker();
+    void operator=(const TimerMaker&);
+    TimerMaker(const TimerMaker&);
+    ~TimerMaker();
 };
 
 #endif // TIMERMAKER_H
