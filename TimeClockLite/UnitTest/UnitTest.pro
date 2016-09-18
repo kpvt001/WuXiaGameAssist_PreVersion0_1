@@ -11,8 +11,12 @@ DESTDIR = $$PROJECT_DIR/bin
 INCLUDEPATH += ../
 
 SOURCES += \
-    WuXiaTimeConfigDatasheet_test.cpp
+    WuXiaTimeConfigDatasheet_gtest.cpp
 
 
 LIBS += $$PROJECT_DIR/Libs/gtest.lib
 LIBS += $$PROJECT_DIR/Libs/gtest_main.lib
+
+HEADERS += \
+    wuxiatimeconfigdatasheet_test.h \
+    test_global.h
