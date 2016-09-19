@@ -25,7 +25,6 @@ SOURCES += main.cpp\
     ArgsOpt.cpp \
     GlobalVariables.cpp \
     Global.cpp \
-    TimerMaker.cpp \
     WuXiaTimeConfig.cpp
 
 HEADERS  += mainwindow.h \
@@ -39,7 +38,6 @@ HEADERS  += mainwindow.h \
     ArgsOpt.h \
     GlobalVariables.h \
     Global.h \
-    TimerMaker.h \
     WuXiaTimeConfig.h \
     WuXiaTimeConfigDataSheet.h
 
