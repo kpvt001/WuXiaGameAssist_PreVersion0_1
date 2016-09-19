@@ -44,7 +44,6 @@ public:
     static const int kModeTest = 0x1;
 
 private:
-
     int mMode;
 };
 
