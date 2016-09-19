@@ -39,7 +39,8 @@ HEADERS  += mainwindow.h \
     GlobalVariables.h \
     Global.h \
     WuXiaTimeConfig.h \
-    WuXiaTimeConfigDataSheet.h
+    WuXiaTimeConfigDataSheet.h \
+    Version.h
 
 FORMS    += mainwindow.ui \
     testpanel.ui
