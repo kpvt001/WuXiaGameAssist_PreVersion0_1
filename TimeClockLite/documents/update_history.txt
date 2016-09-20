@@ -1,0 +1,7 @@
+TimeClockLite History
+v0.12 Alpha 2016/9/20
+修复：
+1、修复占用过高的bug。
+
+v0.11 Alpha 2016/9/18
+初版。
