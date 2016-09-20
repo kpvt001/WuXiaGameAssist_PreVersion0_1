@@ -1,0 +1,14 @@
+项目开发环境版本：
+Qt 5.7		//可使用其他5版本的Qt尝试，兼容性未测试。
+MS Visual Studio 2015	//可使用其他版本的VS尝试，兼容性未测试。
+
+项目目标文件夹目录树：
+./
+	TimeClockLite.exe
+	msvcp140.dll
+	Qt5Core.dll
+	Qt5Gui.dll
+	Qt5Widgets.dll
+	vcruntime140.dll
+./platforms/
+	qwindows.dll
