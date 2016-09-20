@@ -64,10 +64,10 @@ void ArgsOpt::Parse(const QStringList &args)
     QString arg;
     Q_FOREACH(arg, args)
     {
-        if(arg.toLower().startsWith("--mode="))
+        if (arg.toLower().startsWith("--mode="))
         {
             QString option = arg.split('=').last();
-            if(option.toLower() == "test")
+            if (option.toLower() == "test")
                 mMode = kModeTest;
             else
                 mMode = kModeNormal;

@@ -67,7 +67,7 @@ private:
 static Logger& LogInstance()
 {
     static Logger logger;
-	logger << '\n';
+    logger << '\n';
     return logger;
 }
 
