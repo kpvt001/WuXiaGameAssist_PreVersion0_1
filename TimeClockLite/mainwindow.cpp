@@ -41,6 +41,7 @@
 #include "Timer.h"
 #include "TestPanel.h"
 #include "Settings.h"
+#include "Version.h"
 
 class MainWindowPrivateDatas// : public QObject
 {
@@ -101,7 +102,7 @@ bool MainWindow::TestMode() const
 void MainWindow::ConfigUI()
 {
     ui->lastAlertSecLineEdit->setText(QString("%1").arg(mPrivateDatas->ringLastSec));
-
+    ui->versionStringLabel->setText(VersionString_1("beta"));
     // disable widgets
     ui->startPushButton->setVisible(false);
     ui->openTestPanelPushButton->setVisible(false);
