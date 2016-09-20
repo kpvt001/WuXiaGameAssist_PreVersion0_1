@@ -10,9 +10,11 @@ static const int version_build =
 #include "build_number"
         ;
 
-static QString VersionString_1(const QString &version_type)
+static const char *version_type = "Alpha";
+
+static QString VersionString_1()
 {
-    return QString("Version: %1.%2.%3.%4 %5").arg(version_major)
+    return QString("Version: %1.%2.%3-build %4 %5").arg(version_major)
             .arg(version_minor)
             .arg(version_release)
             .arg(version_build)
