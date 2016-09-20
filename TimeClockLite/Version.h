@@ -3,8 +3,6 @@
 
 #include <QString>
 
-
-
 static const int version_major = 0;
 static const int version_minor = 1;
 static const int version_release = 1;
