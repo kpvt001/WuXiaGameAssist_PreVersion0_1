@@ -59,6 +59,8 @@ private:
     bool IsTriggered() const;
     float SetIntervalSec(float sec);
     float SetAccuracySec(float sec);
+    float Interval() const;
+    float Accuracy() const;
     float CalcMaxIntervalWithAccuracy(float sec);
     float MinAccuracySec() const;
     static QTime CurrentTime();
@@ -71,6 +73,7 @@ private:
 	float mIntervalSec;
 	float mAccuracySec;
     int mQObjectTimerEventId;
+    static const int kQObjectTimerInvaildEventId = -1;
 
     static int kTagCount;
 

@@ -40,7 +40,7 @@ int Timer::kTagCount = 0;
 
 Timer::Timer(QObject *parent)
     : mTriggered(false), mIsEnabled(false), mAccuracySec(kDefualtAccuracySec)
-    , mTag(++kTagCount)
+    , mTag(++kTagCount), mQObjectTimerEventId(kQObjectTimerInvaildEventId)
     , mIntervalSec(kDefualtIntervalSec), QObject(parent)
 {
     // Ensure interval is right
@@ -68,6 +68,22 @@ float Timer::SetAccuracySec(float sec)
     return mAccuracySec;
 }
 
+float Timer::Interval() const
+{
+    //return mIntervalSec;
+
+    // Temporary hardcode for performance
+    return 5.0f;
+}
+
+float Timer::Accuracy() const
+{
+    //return mAccuracySec;
+
+    // Temporary hardcode for performance
+    return 60.0f;
+}
+
 void Timer::Enable()
 {
     if(mIsEnabled)
@@ -75,7 +91,7 @@ void Timer::Enable()
 
     SetIntervalSec(mIntervalSec);
 
-    mQObjectTimerEventId = startTimer(mIntervalSec);
+    mQObjectTimerEventId = startTimer(Interval());
 	mIsEnabled = true;
 }
 
@@ -86,6 +102,7 @@ void Timer::Disable()
 
     mIsEnabled = false;
     killTimer(mQObjectTimerEventId);
+    mQObjectTimerEventId = kQObjectTimerInvaildEventId;
 }
 
 float Timer::SetIntervalSec(float sec)
@@ -126,7 +143,7 @@ void Timer::Process(void *param)
     }
     else
     {
-        if(mTime.msecsTo(curTime)< mAccuracySec)
+        if(mTime.msecsTo(curTime)< Accuracy())
             Trigger(param);
     }
 }
