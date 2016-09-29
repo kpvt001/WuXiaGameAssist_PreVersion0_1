@@ -3,6 +3,8 @@
 
 #include "Global.h"
 
+#include <QApplication>
+
 #include "DuowanAnswerRequest.h"
 #include "AnswerResponse.h"
 #include "AnswerItem.h"
@@ -48,15 +50,40 @@ void DropDownListWidget::onGetAnswer(const QString &pinyin)
 
 void DropDownListWidget::onAnswerResponseReady(AnswerResponse *response)
 {
-    if (response->RequestId() == mLastRequestId
-            && response->Error() == AnswerResponse::NoError)
+    ui->contentListWidget->clear();
+
+    if (response->RequestId() == mLastRequestId)
     {
-        ui->contentListWidget->clear();
-        AnswerItem aItem;
-        Q_FOREACH(aItem, response->Items())
+        if (response->Error() == AnswerResponse::NoError)
         {
-            QString itemString = QString("[%1]----%2").arg(aItem.Answer()).arg(aItem.Qustion());
-            ui->contentListWidget->addItem(itemString);
+            AnswerItem aItem;
+            Q_FOREACH(aItem, response->Items())
+            {
+                QString itemString = QString("[%1]----%2").arg(aItem.Answer()).arg(aItem.Qustion());
+                ui->contentListWidget->addItem(itemString);
+            }
+        }
+        else
+        {
+            QString errorString;
+
+            switch (response->Error())
+            {
+            case AnswerResponse::ErrorJsonParse:
+                errorString = "Cannot find the question with this pinyin.";
+                break;
+            case AnswerResponse::ErrorNetworkFailed:
+                errorString = "Network issue.";
+                break;
+
+            default:
+                errorString = "Unknow error from duowan.com";
+                break;
+            }
+
+            ui->contentListWidget->addItem(errorString);
+
+            QApplication::beep();
         }
     }
 
