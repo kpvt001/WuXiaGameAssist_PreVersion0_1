@@ -1,1 +1,1 @@
-qmake -tp vc TimeClockLite.pro
+qmake -tp vc WuXiaAnswerLite.pro
