@@ -9,7 +9,7 @@ QT      += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = WuXiaAnswerLite
+TARGET = AnswerFinder
 TEMPLATE = app
 
 
@@ -35,7 +35,10 @@ HEADERS  += AnswerWindow.h \
     DuowanAnswerSource.h \
     JsonpHelper.h \
     DuowanAnswerResponse.h \
-    DuowanAnswerRequest.h
+    DuowanAnswerRequest.h \
+    Version.h
 
 FORMS    += AnswerWindow.ui \
     DropDownListWidget.ui
+
+RC_FILE += WuXiaAnswerLite.rc
