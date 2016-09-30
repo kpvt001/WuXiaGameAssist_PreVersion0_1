@@ -30,7 +30,7 @@
          </item>
          <item>
           <property name="text">
-           <string>请支持官方答题器http://wuxia.duowan.com/s/answerbox 或 天刀盒子</string>
+           <string>请支持官方答题器[http://wuxia.duowan.com/s/answerbox]</string>
           </property>
          </item>
         </widget>
