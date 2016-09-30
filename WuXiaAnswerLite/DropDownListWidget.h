@@ -18,15 +18,19 @@ public:
     explicit DropDownListWidget(QWidget *parent = 0);
     ~DropDownListWidget();
 
+protected:
+
 protected slots:
     virtual void onContentListComboBoxEditTextChanged(const QString &text);
     virtual void onInputLineEditTextChanged(const QString &text);
     virtual void onAnswerResponseReady(AnswerResponse *response);
     virtual void onGetAnswer(const QString &pinyin);
+    virtual void onApplicationStateChanged(Qt::ApplicationState state);
+    virtual void OnAppActive();
 
 private:
-    void connectObjects();
-    void configUi();
+    void ConnectObjects();
+    void ConfigUi();
 
     int mLastRequestId;
     Ui::DropDownListWidget *ui;

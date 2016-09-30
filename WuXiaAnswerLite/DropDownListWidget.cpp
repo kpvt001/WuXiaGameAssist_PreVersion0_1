@@ -4,6 +4,7 @@
 #include "Global.h"
 
 #include <QApplication>
+#include <QFocusEvent>
 
 #include "DuowanAnswerRequest.h"
 #include "AnswerResponse.h"
@@ -17,7 +18,8 @@ DropDownListWidget::DropDownListWidget(QWidget *parent) :
 
     setWindowFlags(Qt::WindowStaysOnTopHint);
 
-    configUi();
+    ConfigUi();
+    ConnectObjects();
 }
 
 DropDownListWidget::~DropDownListWidget()
@@ -25,7 +27,12 @@ DropDownListWidget::~DropDownListWidget()
     delete ui;
 }
 
-void DropDownListWidget::configUi()
+void DropDownListWidget::ConnectObjects()
+{
+    connect(qApp, SIGNAL(applicationStateChanged(Qt::ApplicationState)), this, SLOT(onApplicationStateChanged(Qt::ApplicationState)));
+}
+
+void DropDownListWidget::ConfigUi()
 {
     connect(ui->inputLineEdit, SIGNAL(textEdited(QString)), this, SLOT(onInputLineEditTextChanged(QString)));
 }
@@ -89,4 +96,19 @@ void DropDownListWidget::onAnswerResponseReady(AnswerResponse *response)
 
     response->Request()->deleteLater();
     delete response;
+}
+
+void DropDownListWidget::onApplicationStateChanged(Qt::ApplicationState state)
+{
+    switch (state)
+    {
+    case Qt::ApplicationActive:
+        OnAppActive();
+        break;
+    }
+}
+
+void DropDownListWidget::OnAppActive()
+{
+    ui->inputLineEdit->selectAll();
 }
