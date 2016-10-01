@@ -5,11 +5,13 @@
 #endif
 
 VS_VERSION_INFO VERSIONINFO
-    FILEVERSION 1,0,1,2
+    FILEVERSION 1,0,3,0
     //PRODUCTVERSION 1,0,1,1
     FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
     FILEFLAGS VS_FF_DEBUG
+#else
+#else
 #else
     FILEFLAGS 0x0L
 #endif
@@ -22,12 +24,12 @@ VS_VERSION_INFO VERSIONINFO
             BLOCK "080404b0"
             BEGIN
                 VALUE "CompanyName", "978321000@qq.com"
-                VALUE "FileDescription", "天涯明月刀OL 答案查找工具"
+                VALUE "FileDescription", "天刀答案查找"
                 VALUE "InternalName", "Answer Finder Tool Lite"
                 VALUE "LegalCopyright", "Copyright (C) 2016, 978321000@qq.com"
-                VALUE "OriginalFilename", "WuXiaAnswerFinder.exe"
-                VALUE "ProductName", "天涯明月刀OL 答案查找工具"
-                VALUE "ProductVersion", "1.0.1.2"
+                VALUE "OriginalFilename", "TDAnswerFinder.exe"
+                VALUE "ProductName", "天刀答案查找"
+                VALUE "ProductVersion", "1.0.3.0"
             END
         END
         BLOCK "VarFileInfo"
