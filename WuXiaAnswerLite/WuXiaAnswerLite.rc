@@ -4,14 +4,13 @@
 #include <winver.h>
 #endif
 
+
 VS_VERSION_INFO VERSIONINFO
     FILEVERSION 1,0,3,0
     //PRODUCTVERSION 1,0,1,1
     FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
     FILEFLAGS VS_FF_DEBUG
-#else
-#else
 #else
     FILEFLAGS 0x0L
 #endif
