@@ -3,7 +3,6 @@
 
 const int kVersionMajor = 1;
 const int kVersionMinor = 0;
-const int kVersionRevision = 2;
-const char *kVersionStatus = "Dev";
+const int kVersionRevision = 1;
 
 #endif
