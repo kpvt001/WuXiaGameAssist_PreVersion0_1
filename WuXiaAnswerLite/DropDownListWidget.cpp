@@ -10,8 +10,11 @@
 #include "AnswerResponse.h"
 #include "AnswerItem.h"
 
-DropDownListWidget::DropDownListWidget(QWidget *parent) :
-    QWidget(parent),
+const float DropDownListWidget::kRequestTimerInterval = 0.5f;
+
+DropDownListWidget::DropDownListWidget(QWidget *parent)
+    : mLastRequestPinyin(QString()), mRequestReached(true)
+    , QWidget(parent),
     ui(new Ui::DropDownListWidget)
 {
     ui->setupUi(this);
@@ -20,11 +23,25 @@ DropDownListWidget::DropDownListWidget(QWidget *parent) :
 
     ConfigUi();
     ConnectObjects();
+
+    mRequestTimerEventId = startTimer(kRequestTimerInterval);
 }
 
 DropDownListWidget::~DropDownListWidget()
 {
     delete ui;
+}
+
+void DropDownListWidget::timerEvent(QTimerEvent *event)
+{
+    if ((event->timerId() == mRequestTimerEventId))
+    {
+        QString inputPinyin = ui->inputLineEdit->text();
+        if (mLastRequestPinyin != inputPinyin)
+        {
+            onGetAnswer(inputPinyin);
+        }
+    }
 }
 
 void DropDownListWidget::ConnectObjects()
@@ -38,11 +55,6 @@ void DropDownListWidget::ConfigUi()
 }
 
 void DropDownListWidget::onContentListComboBoxEditTextChanged(const QString &text)
-{
-    onGetAnswer(text);
-}
-
-void DropDownListWidget::onInputLineEditTextChanged(const QString &text)
 {
     onGetAnswer(text);
 }
@@ -63,6 +75,8 @@ void DropDownListWidget::onAnswerResponseReady(AnswerResponse *response)
     {
         if (response->Error() == AnswerResponse::NoError)
         {
+            mLastRequestPinyin = pinyin;
+
             AnswerItem aItem;
             Q_FOREACH(aItem, response->Items())
             {

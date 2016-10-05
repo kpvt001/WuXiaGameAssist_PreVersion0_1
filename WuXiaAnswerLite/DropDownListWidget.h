@@ -9,6 +9,7 @@ class DropDownListWidget;
 
 class QString;
 class AnswerResponse;
+class QTimerEvent;
 
 class DropDownListWidget : public QWidget
 {
@@ -19,10 +20,10 @@ public:
     ~DropDownListWidget();
 
 protected:
+    virtual void timerEvent(QTimerEvent *event);
 
 protected slots:
     virtual void onContentListComboBoxEditTextChanged(const QString &text);
-    virtual void onInputLineEditTextChanged(const QString &text);
     virtual void onAnswerResponseReady(AnswerResponse *response);
     virtual void onGetAnswer(const QString &pinyin);
     virtual void onApplicationStateChanged(Qt::ApplicationState state);
@@ -33,6 +34,10 @@ private:
     void ConfigUi();
 
     int mLastRequestId;
+    int mRequestTimerEventId;
+    bool mRequestReached;
+    static const float kRequestTimerInterval;
+    QString mLastRequestPinyin;
     Ui::DropDownListWidget *ui;
 };
 
