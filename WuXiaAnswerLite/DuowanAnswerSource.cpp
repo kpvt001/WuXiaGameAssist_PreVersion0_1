@@ -19,7 +19,7 @@
 
 const char* DuowanAnswerSource::kSourceUri = "http://huodong.duowan.com/wxdatiqi/backend/index.php";
 const char* DuowanAnswerSource::kUriAppendParam = "r=index/GetQuestionByKeyword&callback=jsonpReturn&keyword=%1";
-const int DuowanAnswerSource::kRequestMiniIntervalMs = 1000;
+const int DuowanAnswerSource::kRequestMiniIntervalMs = 500;
 
 DuowanAnswerSource::DuowanAnswerSource(QObject *parent)
     : AnswerSource(parent)
