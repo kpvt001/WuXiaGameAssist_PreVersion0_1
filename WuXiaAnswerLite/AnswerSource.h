@@ -15,7 +15,6 @@ public:
 
     virtual void RequestAnswer(const AnswerRequest &request) = 0;
 
-
 signals:
     void answerReady(AnswerResponse *answerResponses);
 
