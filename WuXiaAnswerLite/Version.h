@@ -4,6 +4,6 @@
 const int kVersionMajor = 1;
 const int kVersionMinor = 0;
 const int kVersionRevision = 2;
-const char *kVersionType = "Dev";
+const char *kVersionTypeString = "Dev";
 
 #endif
