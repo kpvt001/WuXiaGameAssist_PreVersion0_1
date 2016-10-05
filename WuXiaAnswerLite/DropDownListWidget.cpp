@@ -86,25 +86,7 @@ void DropDownListWidget::onAnswerResponseReady(AnswerResponse *response)
         }
         else
         {
-            QString errorString;
-
-            switch (response->Error())
-            {
-            case AnswerResponse::ErrorJsonParse:
-                errorString = "Cannot find the question with this pinyin.";
-                break;
-            case AnswerResponse::ErrorNetworkFailed:
-                errorString = "Network issue.";
-                break;
-
-            default:
-                errorString = "Unknow error from duowan.com";
-                break;
-            }
-
-            ui->contentListWidget->addItem(errorString);
-
-            QApplication::beep();
+            DoResponseError(response->Error());
         }
     }
 
@@ -125,4 +107,39 @@ void DropDownListWidget::onApplicationStateChanged(Qt::ApplicationState state)
 void DropDownListWidget::OnAppActive()
 {
     ui->inputLineEdit->selectAll();
+}
+
+void DropDownListWidget::DoResponseError(int errorCode)
+{
+    {   // Error string;
+        QString errorString;
+        switch (errorCode)
+        {
+        case AnswerResponse::ErrorJsonParse:
+            errorString = "Cannot find the question with this pinyin.";
+            break;
+        case AnswerResponse::ErrorNetworkFailed:
+            errorString = "Network issue.";
+            break;
+
+        default:
+            errorString = "Unknow error from duowan.com";
+            break;
+        }
+
+        ui->contentListWidget->addItem(errorString);
+    }
+
+    {   // Whether alert
+        bool needAlert = false;
+        switch (errorCode)
+        {
+        case AnswerResponse::ErrorNetworkFailed:
+            needAlert = true;
+            break;
+        }
+
+        if (needAlert)
+            QApplication::beep();
+    }
 }

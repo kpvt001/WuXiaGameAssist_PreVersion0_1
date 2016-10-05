@@ -21,6 +21,7 @@ public:
 
 protected:
     virtual void timerEvent(QTimerEvent *event);
+    void DoResponseError(int errorCode);
 
 protected slots:
     virtual void onContentListComboBoxEditTextChanged(const QString &text);
