@@ -10,7 +10,7 @@
 #include "AnswerResponse.h"
 #include "AnswerItem.h"
 
-const float DropDownListWidget::kRequestTimerInterval = 0.5f;
+const float DropDownListWidget::kRequestTimerInterval = 300; // ms
 
 DropDownListWidget::DropDownListWidget(QWidget *parent)
     : mLastRequestPinyin(QString()), mRequestReached(true)
@@ -51,7 +51,6 @@ void DropDownListWidget::ConnectObjects()
 
 void DropDownListWidget::ConfigUi()
 {
-    connect(ui->inputLineEdit, SIGNAL(textEdited(QString)), this, SLOT(onInputLineEditTextChanged(QString)));
 }
 
 void DropDownListWidget::onContentListComboBoxEditTextChanged(const QString &text)
@@ -75,7 +74,7 @@ void DropDownListWidget::onAnswerResponseReady(AnswerResponse *response)
     {
         if (response->Error() == AnswerResponse::NoError)
         {
-            mLastRequestPinyin = pinyin;
+            mLastRequestPinyin = response->Request()->Pinyin();
 
             AnswerItem aItem;
             Q_FOREACH(aItem, response->Items())
@@ -113,6 +112,8 @@ void DropDownListWidget::DoResponseError(int errorCode)
 {
     {   // Error string;
         QString errorString;
+        bool needAlert = false;
+        bool needNoticeString = true;
         switch (errorCode)
         {
         case AnswerResponse::ErrorJsonParse:
@@ -120,24 +121,16 @@ void DropDownListWidget::DoResponseError(int errorCode)
             break;
         case AnswerResponse::ErrorNetworkFailed:
             errorString = "Network issue.";
+            needAlert = true;
             break;
 
         default:
-            errorString = "Unknow error from duowan.com";
+            errorString = "Unknow error from duowan.";
             break;
         }
 
-        ui->contentListWidget->addItem(errorString);
-    }
-
-    {   // Whether alert
-        bool needAlert = false;
-        switch (errorCode)
-        {
-        case AnswerResponse::ErrorNetworkFailed:
-            needAlert = true;
-            break;
-        }
+        if (needNoticeString)
+            ui->contentListWidget->addItem(errorString);
 
         if (needAlert)
             QApplication::beep();
