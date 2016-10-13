@@ -22,7 +22,11 @@ DropDownListWidget::DropDownListWidget(QWidget *parent)
 {
     ui->setupUi(this);
 
-    setWindowFlags(Qt::WindowStaysOnTopHint);
+    {
+        int flags = windowFlags();
+        flags = flags | Qt::WindowStaysOnTopHint;
+        setWindowFlags(static_cast<Qt::WindowFlags>(flags));
+    }
 
     ConfigUi();
     ConnectObjects();
