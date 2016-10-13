@@ -39,7 +39,9 @@ void DropDownListWidget::timerEvent(QTimerEvent *event)
 {
     if ((event->timerId() == mRequestTimerEventId))
     {
-        QString inputPinyin = ui->inputLineEdit->text().toLower();
+        QString inputPinyin = ui->inputLineEdit->text();
+        DisposeInputPinyin(&inputPinyin);
+        ui->inputLineEdit->setText(inputPinyin);
 
         if (inputPinyin.isEmpty())
         {
@@ -172,4 +174,10 @@ void DropDownListWidget::onResetEmptyListWidget()
 {
     ui->contentListWidget->clear();
     ui->contentListWidget->addItem(STR(StrAnswerIsFromDuowan));
+}
+
+void DropDownListWidget::DisposeInputPinyin(QString *pinyin)
+{
+    *pinyin = pinyin->toLower();
+    pinyin->replace(' ', '_');
 }

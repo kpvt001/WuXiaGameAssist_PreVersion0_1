@@ -38,6 +38,7 @@ protected slots:
 private:
     void ConnectObjects();
     void ConfigUi();
+    void DisposeInputPinyin(QString *pinyin);
 
     std::atomic_int mLastRequestId;
     int mRequestTimerEventId;
