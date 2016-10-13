@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     DuowanAnswerSource.cpp \
     JsonpHelper.cpp \
     DuowanAnswerResponse.cpp \
-    DuowanAnswerRequest.cpp
+    DuowanAnswerRequest.cpp \
+    StringTable.cpp
 
 HEADERS  += AnswerWindow.h \
     DropDownListWidget.h \
@@ -36,7 +37,8 @@ HEADERS  += AnswerWindow.h \
     JsonpHelper.h \
     DuowanAnswerResponse.h \
     DuowanAnswerRequest.h \
-    Version.h
+    Version.h \
+    StringTable.h
 
 FORMS    += AnswerWindow.ui \
     DropDownListWidget.ui

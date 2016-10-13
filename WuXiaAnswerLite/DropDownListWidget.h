@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <atomic>
+
 namespace Ui {
 class DropDownListWidget;
 }
@@ -22,6 +24,7 @@ public:
 protected:
     virtual void timerEvent(QTimerEvent *event);
     void DoResponseError(int errorCode);
+    QString AnswerResultMaskString() const;
 
 protected slots:
     virtual void onContentListComboBoxEditTextChanged(const QString &text);
@@ -29,16 +32,18 @@ protected slots:
     virtual void onGetAnswer(const QString &pinyin);
     virtual void onApplicationStateChanged(Qt::ApplicationState state);
     virtual void OnAppActive();
+    virtual void onEmptyInputEdit();
+    virtual void onResetEmptyListWidget();
 
 private:
     void ConnectObjects();
     void ConfigUi();
 
-    int mLastRequestId;
+    std::atomic_int mLastRequestId;
     int mRequestTimerEventId;
-    bool mRequestReached;
-    static const float kRequestTimerInterval;
-    QString mLastRequestPinyin;
+    static const int kRequestTimerInterval;
+    QString mLastSuccessedRequestPinyin;
+    QString mRequestingPinyin;
     Ui::DropDownListWidget *ui;
 };
 

@@ -14,7 +14,8 @@ namespace {
     {
         QString ret = string;
         ret = ret.remove(jsonpTag + '(');
-        return ret.replace("}]);", "}]");
+//        return ret.replace("}]);", "}]");
+        return ret.remove(");");
     }
 }
 
@@ -26,10 +27,14 @@ JsonpHelper::JsonpHelper()
 QJsonDocument JsonpHelper::DuowanJsonp(const QByteArray &data, QJsonParseError *error)
 {
     QString jsonContent = ByteArray2Utf8String(data);
-
-    jsonContent = RemoveJsonpTag(jsonContent, "jsonpReturn");
-
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonContent.toUtf8(), error);
+    QJsonDocument jsonDoc;
+    if (jsonContent == "jsonpReturn(null);")
+        jsonDoc = QJsonDocument::fromJson("{}", error);
+    else
+    {
+        jsonContent = RemoveJsonpTag(jsonContent, "jsonpReturn");
+        jsonDoc = QJsonDocument::fromJson(jsonContent.toUtf8(), error);
+    }
 
     return jsonDoc;
 }

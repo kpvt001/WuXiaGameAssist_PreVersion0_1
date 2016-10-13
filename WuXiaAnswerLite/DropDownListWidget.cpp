@@ -9,11 +9,14 @@
 #include "DuowanAnswerRequest.h"
 #include "AnswerResponse.h"
 #include "AnswerItem.h"
+#include "StringTable.h"
 
-const float DropDownListWidget::kRequestTimerInterval = 300; // ms
+const int DropDownListWidget::kRequestTimerInterval = 400; // ms
+
+const QString sNullStringPlaceHolder = QString("a-null-string").toLower();
 
 DropDownListWidget::DropDownListWidget(QWidget *parent)
-    : mLastRequestPinyin(QString()), mRequestReached(true)
+    : mLastSuccessedRequestPinyin(sNullStringPlaceHolder)
     , QWidget(parent),
     ui(new Ui::DropDownListWidget)
 {
@@ -37,10 +40,20 @@ void DropDownListWidget::timerEvent(QTimerEvent *event)
     if ((event->timerId() == mRequestTimerEventId))
     {
         QString inputPinyin = ui->inputLineEdit->text();
-        if (mLastRequestPinyin != inputPinyin)
+
+        if (inputPinyin.isEmpty())
         {
-            onGetAnswer(inputPinyin);
+            onEmptyInputEdit();
+            return;
         }
+
+        if (mRequestingPinyin == inputPinyin)
+            return;
+
+        if (mLastSuccessedRequestPinyin == inputPinyin)
+            return;
+
+        onGetAnswer(inputPinyin);
     }
 }
 
@@ -51,6 +64,7 @@ void DropDownListWidget::ConnectObjects()
 
 void DropDownListWidget::ConfigUi()
 {
+    onResetEmptyListWidget();
 }
 
 void DropDownListWidget::onContentListComboBoxEditTextChanged(const QString &text)
@@ -60,27 +74,40 @@ void DropDownListWidget::onContentListComboBoxEditTextChanged(const QString &tex
 
 void DropDownListWidget::onGetAnswer(const QString &pinyin)
 {
+    mRequestingPinyin = pinyin;
     DuowanAnswerRequest *request = new DuowanAnswerRequest(pinyin);
     mLastRequestId = request->Id();
     connect(request, SIGNAL(responseReady(AnswerResponse*)), this, SLOT(onAnswerResponseReady(AnswerResponse*)));
     request->Request();
 }
 
+QString DropDownListWidget::AnswerResultMaskString() const
+{
+    return QString("[%1]----%2");
+}
+
 void DropDownListWidget::onAnswerResponseReady(AnswerResponse *response)
 {
     ui->contentListWidget->clear();
-
+    mRequestingPinyin.clear();
     if (response->RequestId() == mLastRequestId)
     {
         if (response->Error() == AnswerResponse::NoError)
         {
-            mLastRequestPinyin = response->Request()->Pinyin();
-
-            AnswerItem aItem;
-            Q_FOREACH(aItem, response->Items())
+            mLastSuccessedRequestPinyin = response->Request()->Pinyin();
+            if (response->AnswerCount() == 0)
             {
-                QString itemString = QString("[%1]----%2").arg(aItem.Answer()).arg(aItem.Qustion());
-                ui->contentListWidget->addItem(itemString);
+                ui->contentListWidget->addItem(STR(StrCannotFindAnswer));
+            }
+            else
+            {
+                AnswerItem aItem;
+                Q_FOREACH(aItem, response->Items())
+                {
+                    QString mask = AnswerResultMaskString();
+                    QString itemString = mask.arg(aItem.Answer()).arg(aItem.Qustion());
+                    ui->contentListWidget->addItem(itemString);
+                }
             }
         }
         else
@@ -110,22 +137,20 @@ void DropDownListWidget::OnAppActive()
 
 void DropDownListWidget::DoResponseError(int errorCode)
 {
-    {   // Error string;
+    {
         QString errorString;
         bool needAlert = false;
         bool needNoticeString = true;
         switch (errorCode)
         {
-        case AnswerResponse::ErrorJsonParse:
-            errorString = "Cannot find the question with this pinyin.";
-            break;
         case AnswerResponse::ErrorNetworkFailed:
-            errorString = "Network issue.";
+            errorString = STR(StrNetworkIuuse);
             needAlert = true;
             break;
 
+        case AnswerResponse::ErrorJsonParse:
         default:
-            errorString = "Unknow error from duowan.";
+            errorString = STR(StrUnkownErrorFromDuowan);
             break;
         }
 
@@ -135,4 +160,16 @@ void DropDownListWidget::DoResponseError(int errorCode)
         if (needAlert)
             QApplication::beep();
     }
+}
+
+void DropDownListWidget::onEmptyInputEdit()
+{
+    onResetEmptyListWidget();
+    mLastSuccessedRequestPinyin.clear();
+}
+
+void DropDownListWidget::onResetEmptyListWidget()
+{
+    ui->contentListWidget->clear();
+    ui->contentListWidget->addItem(STR(StrAnswerIsFromDuowan));
 }

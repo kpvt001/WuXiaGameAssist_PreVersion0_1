@@ -28,6 +28,7 @@ public:
     void AddItem(const AnswerItem &item);
     AnswerRequest* Request() const {return mRequest;}
     const QList<AnswerItem>& Items() const { return mItems; }
+    int AnswerCount() const {return mItems.size();}
     virtual void AddItemFromJsonObject(const QJsonObject &jsonObject);
 
     static AnswerResponse* ResponseForNetworkFailed();

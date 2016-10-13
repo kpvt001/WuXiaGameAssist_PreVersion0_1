@@ -47,6 +47,7 @@ void DuowanAnswerSource::RequestAnswerFromPinyin(const QString &pinyin)
     isFirstRequest = false;
 #endif
 
+    qDebug() << "request:" << pinyin;
     static QString sourceUri = QString(kSourceUri);
     static QString uriAppendParam = QString(kUriAppendParam);
 

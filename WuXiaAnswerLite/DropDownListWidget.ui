@@ -22,18 +22,7 @@
         <widget class="QLineEdit" name="inputLineEdit"/>
        </item>
        <item>
-        <widget class="QListWidget" name="contentListWidget">
-         <item>
-          <property name="text">
-           <string>题库内容来自 多玩[http://wuxia.duowan.com]</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>请支持官方答题器[http://wuxia.duowan.com/s/answerbox]</string>
-          </property>
-         </item>
-        </widget>
+        <widget class="QListWidget" name="contentListWidget"/>
        </item>
        <item>
         <spacer name="verticalSpacer">
