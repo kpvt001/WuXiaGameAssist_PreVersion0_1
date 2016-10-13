@@ -16,7 +16,7 @@ const int DropDownListWidget::kRequestTimerInterval = 400; // ms
 const QString sNullStringPlaceHolder = QString("a-null-string").toLower();
 
 DropDownListWidget::DropDownListWidget(QWidget *parent)
-    : mLastSuccessedRequestPinyin(sNullStringPlaceHolder)
+    : mLastSuccessedRequestPinyin(sNullStringPlaceHolder.toLower())
     , QWidget(parent),
     ui(new Ui::DropDownListWidget)
 {
@@ -39,7 +39,7 @@ void DropDownListWidget::timerEvent(QTimerEvent *event)
 {
     if ((event->timerId() == mRequestTimerEventId))
     {
-        QString inputPinyin = ui->inputLineEdit->text();
+        QString inputPinyin = ui->inputLineEdit->text().toLower();
 
         if (inputPinyin.isEmpty())
         {
