@@ -24,7 +24,9 @@ SOURCES += main.cpp\
     JsonpHelper.cpp \
     DuowanAnswerResponse.cpp \
     DuowanAnswerRequest.cpp \
-    StringTable.cpp
+    StringTable.cpp \
+    ArgsOpt.cpp \
+    Settings.cpp
 
 HEADERS  += AnswerWindow.h \
     DropDownListWidget.h \
@@ -38,7 +40,9 @@ HEADERS  += AnswerWindow.h \
     DuowanAnswerResponse.h \
     DuowanAnswerRequest.h \
     Version.h \
-    StringTable.h
+    StringTable.h \
+    ArgsOpt.h \
+    Settings.h
 
 FORMS    += AnswerWindow.ui \
     DropDownListWidget.ui
