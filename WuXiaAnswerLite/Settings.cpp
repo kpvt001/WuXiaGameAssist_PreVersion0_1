@@ -30,7 +30,6 @@
 
 Settings::Settings(QObject *parent)
     : mIsTestMode(false)
-    , mUseTestCurrentTime(false)
     , QObject(parent)
 {
 
