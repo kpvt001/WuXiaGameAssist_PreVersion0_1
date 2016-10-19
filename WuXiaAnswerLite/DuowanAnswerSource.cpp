@@ -89,6 +89,7 @@ void DuowanAnswerSource::onNetReplyFinished(QNetworkReply *reply)
     }
 
     emit answerReady(response);
+    reply->deleteLater();
 }
 
 void DuowanAnswerSource::RequestAnswer(const AnswerRequest &request)
