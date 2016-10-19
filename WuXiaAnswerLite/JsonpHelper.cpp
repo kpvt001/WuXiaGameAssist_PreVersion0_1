@@ -13,9 +13,9 @@ namespace {
     inline QString RemoveJsonpTag(const QString &string, const QString &jsonpTag)
     {
         QString ret = string;
-        ret = ret.remove(jsonpTag + '(');
-//        return ret.replace("}]);", "}]");
-        return ret.remove(");");
+        ret.remove(jsonpTag + '(');
+        ret.remove(");");
+        return ret;
     }
 }
 
