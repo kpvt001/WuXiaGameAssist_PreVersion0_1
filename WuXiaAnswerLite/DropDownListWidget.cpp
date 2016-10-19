@@ -170,8 +170,8 @@ void DropDownListWidget::DoResponseError(int errorCode)
 
 void DropDownListWidget::onEmptyInputEdit()
 {
-    onResetEmptyListWidget();
     mLastSuccessedRequestPinyin.clear();
+    onResetEmptyListWidget();
 }
 
 void DropDownListWidget::onResetEmptyListWidget()
