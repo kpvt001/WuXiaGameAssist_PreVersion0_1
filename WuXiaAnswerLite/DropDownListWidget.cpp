@@ -94,10 +94,10 @@ QString DropDownListWidget::AnswerResultMaskString() const
 
 void DropDownListWidget::onAnswerResponseReady(AnswerResponse *response)
 {
-    ui->contentListWidget->clear();
-    mRequestingPinyin.clear();
     if (response->RequestId() == mLastRequestId)
     {
+        ui->contentListWidget->clear();
+        mRequestingPinyin.clear();
         if (response->Error() == AnswerResponse::NoError)
         {
             mLastSuccessedRequestPinyin = response->Request()->Pinyin();
