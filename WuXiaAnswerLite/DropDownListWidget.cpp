@@ -45,7 +45,7 @@ void DropDownListWidget::timerEvent(QTimerEvent *event)
     {
         QString inputPinyin = ui->inputLineEdit->text();
         DisposeInputPinyin(&inputPinyin);
-        ui->inputLineEdit->setText(inputPinyin);
+        //ui->inputLineEdit->setText(inputPinyin);
 
         if (inputPinyin.isEmpty())
         {
