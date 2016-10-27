@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<TDAnswerFinder>
+	<Version>1.0.4.0</Version>
+	<Update checkMethod="fromDns">
+		<CheckServer name="Master"></CheckServer>
+	</Update>
+	<Hash>
+	</Hash>
+	<AnswerSource name="Duowan"></AnswerSource>
+	<Dependence>
+		<file type="dll"></file>
+		<file type="dll"></file>
+	</Dependence>
+</TDAnswerFinder>
